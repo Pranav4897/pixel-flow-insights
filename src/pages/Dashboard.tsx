@@ -1,16 +1,42 @@
+import { useState } from "react"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { OverviewCards, EngagementMetrics } from "@/components/dashboard/overview-cards"
 import { CampaignTable } from "@/components/dashboard/campaign-table"
 import { AlertsPanel } from "@/components/dashboard/alerts-panel"
 import { AudienceInsights } from "@/components/dashboard/audience-insights"
 import { BudgetTracker } from "@/components/dashboard/budget-tracker"
+import { Button } from "@/components/ui/button"
 
 export default function Dashboard() {
+  const [timePeriod, setTimePeriod] = useState("monthly")
+  const periods = [
+    { value: "daily", label: "Daily" },
+    { value: "weekly", label: "Weekly" },
+    { value: "monthly", label: "Monthly" },
+    { value: "yearly", label: "Yearly" }
+  ]
+
   return (
     <div className="min-h-screen bg-background">
       <DashboardHeader />
       
       <main className="container px-6 py-8 space-y-8">
+        {/* Time Period Filter */}
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold">Revenue Analytics</h1>
+          <div className="flex gap-2">
+            {periods.map((period) => (
+              <Button
+                key={period.value}
+                variant={timePeriod === period.value ? "default" : "outline"}
+                size="sm"
+                onClick={() => setTimePeriod(period.value)}
+              >
+                {period.label}
+              </Button>
+            ))}
+          </div>
+        </div>
         {/* Welcome Section */}
         <div className="glass-card p-6 bg-gradient-hero text-white">
           <div className="animate-fade-in">
