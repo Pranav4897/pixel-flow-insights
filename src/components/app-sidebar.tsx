@@ -5,9 +5,7 @@ import {
   MapPin, 
   TrendingUp, 
   Newspaper,
-  User,
-  HelpCircle,
-  LogOut
+  Settings
 } from "lucide-react"
 import { NavLink } from "react-router-dom"
 import {
@@ -23,13 +21,6 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 const menuItems = [
@@ -39,6 +30,7 @@ const menuItems = [
   { title: "Top Geographic", url: "/geographic", icon: MapPin },
   { title: "Stock Market", url: "/stock-market", icon: TrendingUp },
   { title: "News", url: "/news", icon: Newspaper },
+  { title: "Settings", url: "/settings", icon: Settings },
 ]
 
 export function AppSidebar() {
@@ -91,37 +83,7 @@ export function AppSidebar() {
       </SidebarContent>
 
       <div className="mt-auto p-4 border-t">
-        <div className="flex items-center justify-between">
-          {!collapsed && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <div className="flex items-center gap-2 cursor-pointer hover:bg-accent p-2 rounded-lg">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src="/placeholder.svg" />
-                    <AvatarFallback>JD</AvatarFallback>
-                  </Avatar>
-                  <div className="text-sm">
-                    <p className="font-medium">John Doe</p>
-                    <p className="text-muted-foreground text-xs">Admin</p>
-                  </div>
-                </div>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  Account
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <HelpCircle className="mr-2 h-4 w-4" />
-                  Help & Support
-                </DropdownMenuItem>
-                <DropdownMenuItem className="text-red-600">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Logout
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
+        <div className="flex items-center justify-center">
           <ThemeToggle />
         </div>
       </div>

@@ -13,6 +13,9 @@ import SocialMedia from "./pages/SocialMedia";
 import TopGeographic from "./pages/TopGeographic";
 import StockMarket from "./pages/StockMarket";
 import News from "./pages/News";
+import Settings from "./pages/Settings";
+import Account from "./pages/Account";
+import HelpSupport from "./pages/HelpSupport";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +39,9 @@ const App = () => (
                   <Route path="/geographic" element={<TopGeographic />} />
                   <Route path="/stock-market" element={<StockMarket />} />
                   <Route path="/news" element={<News />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/account" element={<Account />} />
+                  <Route path="/help-support" element={<HelpSupport />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>

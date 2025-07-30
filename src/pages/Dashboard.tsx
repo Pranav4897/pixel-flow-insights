@@ -22,15 +22,16 @@ export default function Dashboard() {
       
       <main className="container px-6 py-8 space-y-8">
         {/* Time Period Filter */}
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold">Revenue Analytics</h1>
-          <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <h1 className="text-2xl sm:text-3xl font-bold">Revenue Analytics</h1>
+          <div className="flex flex-wrap gap-2">
             {periods.map((period) => (
               <Button
                 key={period.value}
                 variant={timePeriod === period.value ? "default" : "outline"}
                 size="sm"
                 onClick={() => setTimePeriod(period.value)}
+                className="text-xs sm:text-sm"
               >
                 {period.label}
               </Button>
@@ -38,11 +39,11 @@ export default function Dashboard() {
           </div>
         </div>
         {/* Welcome Section */}
-        <div className="glass-card p-6 bg-gradient-hero text-white">
+        <div className="glass-card p-4 sm:p-6 bg-gradient-hero text-white">
           <div className="animate-fade-in">
-            <h1 className="text-3xl font-bold mb-2">Welcome back to ADmyBRAND Insights</h1>
-            <p className="text-white/80 text-lg">
-              Your campaigns are performing exceptionally well this month. 
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">Welcome back to ADmyBRAND Insights</h1>
+            <p className="text-white/80 text-sm sm:text-base lg:text-lg">
+              Your campaigns are performing exceptionally well this {timePeriod === 'daily' ? 'day' : timePeriod === 'weekly' ? 'week' : timePeriod === 'monthly' ? 'month' : 'year'}. 
               Here's your comprehensive marketing overview.
             </p>
           </div>
@@ -67,7 +68,7 @@ export default function Dashboard() {
         </section>
 
         {/* Two Column Layout */}
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="grid gap-6 lg:gap-8 lg:grid-cols-3">
           {/* Left Column - Campaign Table */}
           <div className="lg:col-span-2 animate-slide-up">
             <CampaignTable />
@@ -99,33 +100,41 @@ export default function Dashboard() {
         <section className="animate-slide-up">
           <div className="metric-card bg-gradient-primary text-white">
             <h3 className="text-xl font-bold mb-4">Key Insights & Recommendations</h3>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
               <div className="space-y-2">
-                <h4 className="font-semibold">📊 Campaign Performance</h4>
+                <h4 className="font-semibold">📊 {timePeriod.charAt(0).toUpperCase() + timePeriod.slice(1)} Performance</h4>
                 <p className="text-white/90 text-sm">
-                  Google Ads generated ₹18.75L revenue with 4.8% CTR and 3.1% conversion rate. 
-                  Facebook shows higher CTR (5.3%) but lower conversion (2.4%).
+                  {timePeriod === 'daily' ? 'Today\'s campaigns generated ₹2.8L with 4.8% CTR.' : 
+                   timePeriod === 'weekly' ? 'This week\'s campaigns generated ₹18.75L with 4.8% CTR.' :
+                   timePeriod === 'monthly' ? 'This month\'s campaigns generated ₹75L with 4.8% CTR.' :
+                   'This year\'s campaigns generated ₹900L with 4.8% CTR.'}
                 </p>
               </div>
               <div className="space-y-2">
-                <h4 className="font-semibold">👥 Audience Engagement</h4>
+                <h4 className="font-semibold">👥 Audience Insights</h4>
                 <p className="text-white/90 text-sm">
-                  Millennial users (25-34) from Tier 1 cities using iOS devices engaged 2.2x more 
-                  with highest email CTR at 9.4%.
+                  {timePeriod === 'daily' ? 'Today: Millennials (25-34) show 2.2x engagement.' :
+                   timePeriod === 'weekly' ? 'This week: iOS users from Tier 1 cities lead engagement.' :
+                   timePeriod === 'monthly' ? 'This month: Millennial users from Tier 1 cities engaged 2.2x more.' :
+                   'This year: Consistent millennial engagement with highest email CTR at 9.4%.'}
                 </p>
               </div>
               <div className="space-y-2">
                 <h4 className="font-semibold">📈 Traffic Trends</h4>
                 <p className="text-white/90 text-sm">
-                  Traffic peaked on July 14th with influencer collaboration. 
-                  Consider retargeting push to sustain 18% visitor decline.
+                  {timePeriod === 'daily' ? 'Traffic peaked at 2 PM today with social media boost.' :
+                   timePeriod === 'weekly' ? 'Weekly peak on Wednesday with influencer content.' :
+                   timePeriod === 'monthly' ? 'Traffic peaked on July 14th with influencer collaboration.' :
+                   'Annual peak during festive season with 300% traffic increase.'}
                 </p>
               </div>
               <div className="space-y-2">
-                <h4 className="font-semibold">🗺 Geographic Performance</h4>
+                <h4 className="font-semibold">🗺 Geographic Trends</h4>
                 <p className="text-white/90 text-sm">
-                  Top conversions from Mumbai, Bengaluru, Delhi. 
-                  Jaipur shows high engagement but low conversion - check localization.
+                  {timePeriod === 'daily' ? 'Mumbai leads today with 35% of conversions.' :
+                   timePeriod === 'weekly' ? 'Tier 1 cities dominate weekly conversions.' :
+                   timePeriod === 'monthly' ? 'Top conversions from Mumbai, Bengaluru, Delhi this month.' :
+                   'Annual growth: 45% from metros, 32% from Tier 2 cities.'}
                 </p>
               </div>
             </div>

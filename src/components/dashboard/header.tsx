@@ -1,8 +1,9 @@
-import { Bell, Search, Settings } from "lucide-react"
+import { Bell, Search, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Badge } from "@/components/ui/badge"
+import { ProfileDropdown } from "./profile-dropdown"
 
 export function DashboardHeader() {
   return (
@@ -20,14 +21,19 @@ export function DashboardHeader() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="relative max-w-sm">
+        <div className="flex items-center gap-2 sm:gap-4">
+          <div className="relative hidden sm:block max-w-sm">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder="Search campaigns, clients..."
               className="pl-10 bg-card/50 border-border/40"
             />
           </div>
+          
+          <Button variant="outline" size="sm" className="hidden sm:flex">
+            <Calendar className="h-4 w-4 mr-2" />
+            July 2024
+          </Button>
           
           <Button variant="outline" size="icon" className="relative border-border/40 bg-card/50">
             <Bell className="h-4 w-4" />
@@ -41,9 +47,7 @@ export function DashboardHeader() {
           
           <ThemeToggle />
           
-          <Button variant="outline" size="icon" className="border-border/40 bg-card/50">
-            <Settings className="h-4 w-4" />
-          </Button>
+          <ProfileDropdown />
         </div>
       </div>
     </header>
